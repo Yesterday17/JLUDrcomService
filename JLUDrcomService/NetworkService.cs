@@ -22,10 +22,10 @@ namespace JLUDrcomService
 
         protected override void OnStart(string[] args)
         {
-            String username = args.Length >= 1 ? args[0] : jlu.GetValue("drcomUsername").ToString();
-            String password = args.Length >= 2 ? args[1] : jlu.GetValue("drcomPassword").ToString();
+            String username = args.Length >= 1 ? args[0] : jlu.GetValue("drcomUsername", "").ToString();
+            String password = args.Length >= 2 ? args[1] : jlu.GetValue("drcomPassword", "").ToString();
             Console.WriteLine("Logining with username: " + username + ", password(hash): " + password.GetHashCode());
-
+            Network.login(username, password);
             
         }
 
