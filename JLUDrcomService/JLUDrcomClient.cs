@@ -21,7 +21,7 @@ namespace JLUDrcomService
 
         private int heartbeatCount = 0;
         private byte[] tail = new byte[2];
-        
+
         public JLUDrcomClient(String username, String password)
         {
             this.username = username;

@@ -33,7 +33,7 @@ namespace JLUDrcomService.Packets
             return new Packet(concat(c1.packet, c2));
         }
 
-        public static Packet operator +(byte[] c1,Packet c2)
+        public static Packet operator +(byte[] c1, Packet c2)
         {
             return new Packet(concat(c1, c2.packet));
         }
@@ -53,7 +53,7 @@ namespace JLUDrcomService.Packets
             return new Packet(data);
         }
 
-        public static implicit operator byte[](Packet data)
+        public static implicit operator byte[] (Packet data)
         {
             return data.packet;
         }

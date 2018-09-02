@@ -14,8 +14,8 @@ namespace JLUDrcomService
     public partial class JLUDrcomService : ServiceBase
     {
         private RegistryKey jlu;
-
         private JLUDrcomClient client;
+
         public JLUDrcomService()
         {
             // 初始化
@@ -58,7 +58,7 @@ namespace JLUDrcomService
         {
             this.Stop();
         }
-        
+
         private void HeartBeat_Tick(object sender, EventArgs e)
         {
             // 发送心跳包
