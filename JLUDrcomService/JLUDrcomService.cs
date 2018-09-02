@@ -13,14 +13,18 @@ namespace JLUDrcomService
 {
     public partial class JLUDrcomService : ServiceBase
     {
-        private RegistryKey jlu = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\JLUDrcomService");
+        private RegistryKey jlu;
 
         private String username;
         private String password;
+
+        private byte[] tail = new byte[2];
         public JLUDrcomService()
         {
             // 初始化
             InitializeComponent();
+            Registry.CurrentUser.CreateSubKey(@"SOFTWARE\JLUDrcomService");
+            jlu = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\JLUDrcomService");
 
             // 设置用户名密码
             username = ReadRegistry("username");
@@ -32,8 +36,18 @@ namespace JLUDrcomService
             // 调试用 手动创造断点
             System.Diagnostics.Debugger.Launch();
 
+            // 发送 Challenge 包
+            int retry = 0;
+            while (!Network.Challenge(retry))
+            {
+                retry++;
+            }
+
             // 使用用户名密码登录
-            Network.Login(username, password);
+            if (!Network.Login(username, password))
+            {
+                this.Stop();
+            }
 
             // 启动 heartbeat 发包
             HeartBeat.Enabled = true;
@@ -59,7 +73,7 @@ namespace JLUDrcomService
 
         private void HeartBeat_Tick(object sender, EventArgs e)
         {
-
+            Network.HeartBeat(tail);
         }
 
         private String ReadRegistry(String key)

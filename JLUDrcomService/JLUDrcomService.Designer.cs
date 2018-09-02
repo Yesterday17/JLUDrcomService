@@ -33,7 +33,7 @@
             // 
             // HeartBeat
             // 
-            this.HeartBeat.Interval = 10000;
+            this.HeartBeat.Interval = 20000;
             this.HeartBeat.Tick += new System.EventHandler(this.HeartBeat_Tick);
             // 
             // JLUDrcomService

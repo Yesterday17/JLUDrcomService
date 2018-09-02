@@ -13,52 +13,64 @@ namespace JLUDrcomService
         private const String authServer = "10.100.61.3";
         private const int authPort = 61440;
 
-        private const int initPacketSize = 20;
-
-        public static String Login(String username, String password)
+        public static bool Challenge(int retry)
         {
-            UdpClient client = new UdpClient(authServer, authPort);
-            IPEndPoint endPoint = new IPEndPoint(NetworkUtils.IP2Int(authServer), authPort);
-            client.Send(NetworkUtils.GenerateInitPacket(1), initPacketSize);
+            byte[] packet = new byte[]
+            {
+                0x01, (byte)(0x02 + retry),
+                NetworkUtils.RandomByte(), NetworkUtils.RandomByte(),
+                0x6a, 0x00,
+                0x00, 0x00,
+                0x00, 0x00,
+                0x00, 0x00,
+                0x00, 0x00,
+                0x00, 0x00,
+                0x00, 0x00,
+                0x00, 0x00
+            };
+            byte[] receive = NetworkUtils.SendUDPDatagram(packet);
+            return true;
+        }
 
-            byte[] packet1 = client.Receive(ref endPoint);
+        public static bool Login(String username, String password)
+        {
+            return true;
+        }
+
+        public static String HeartBeat(byte[] tail)
+        {
             return "";
         }
 
         static class NetworkUtils
         {
-            public static long IP2Int(string ip)
-            {
-                char[] separator = new char[] { '.' };
-                string[] items = ip.Split(separator);
-                return long.Parse(items[0]) << 24
-                        | long.Parse(items[1]) << 16
-                        | long.Parse(items[2]) << 8
-                        | long.Parse(items[3]);
-            }
-
-            public static byte[] RandomBytes(int size)
-            {
-                byte[] b = new byte[size];
-                new Random().NextBytes(b);
-                return b;
-            }
-
             public static byte RandomByte()
             {
-                return RandomBytes(1)[0];
+                return (byte)new Random().Next();
             }
 
-            public static byte[] GenerateInitPacket(int trytime)
+            public static byte[] SendUDPDatagram(byte[] packet)
             {
-                byte[] packet = new byte[]
+                IPEndPoint e = new IPEndPoint(IPAddress.Parse(authServer), authPort);
+                UdpClient client = new UdpClient();
+
+                try
                 {
-                    0x01, (byte)(0x02 + trytime), RandomByte(), RandomByte(), 0x6a,
-                    0x00, 0x00, 0x00, 0x00, 0x00,
-                    0x00, 0x00, 0x00, 0x00, 0x00,
-                    0x00, 0x00, 0x00, 0x00, 0x00
-                };
-                return packet;
+                    client.Connect(e);
+                    client.Send(packet, packet.Length);
+                    byte[] receive = client.Receive(ref e);
+                    client.Close();
+                    return receive;
+                }
+                catch
+                {
+                    return new byte[] { };
+                }
+            }
+
+            public static String GetHostName()
+            {
+                return Dns.GetHostName();
             }
         }
 
