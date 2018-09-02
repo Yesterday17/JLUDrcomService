@@ -12,7 +12,7 @@ using JLUDrcomService.Packets;
 
 namespace JLUDrcomService
 {
-    class Network
+    class JLUDrcomClient
     {
         private String username;
         private String password;
@@ -22,7 +22,7 @@ namespace JLUDrcomService
         private int heartbeatCount = 0;
         private byte[] tail = new byte[2];
         
-        public Network(String username, String password)
+        public JLUDrcomClient(String username, String password)
         {
             this.username = username;
             this.password = password;

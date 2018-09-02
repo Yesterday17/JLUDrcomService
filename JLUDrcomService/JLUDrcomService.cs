@@ -15,7 +15,7 @@ namespace JLUDrcomService
     {
         private RegistryKey jlu;
 
-        private Network client;
+        private JLUDrcomClient client;
         public JLUDrcomService()
         {
             // 初始化
@@ -24,7 +24,7 @@ namespace JLUDrcomService
             jlu = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\JLUDrcomService");
 
             // 配置 client
-            client = new Network(ReadRegistry("username"), ReadRegistry("password"));
+            client = new JLUDrcomClient(ReadRegistry("username"), ReadRegistry("password"));
         }
 
         protected override void OnStart(string[] args)
