@@ -40,7 +40,7 @@
             // serviceInstaller
             // 
             this.serviceInstaller.Description = "吉林大学校园网登录的Windows服务版本实现。";
-            this.serviceInstaller.DisplayName = "JLUDrcomService";
+            this.serviceInstaller.DisplayName = "吉林大学校园网登录服务";
             this.serviceInstaller.ServiceName = "JLUDrcomService";
             this.serviceInstaller.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 

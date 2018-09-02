@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Net;
+using System.Security.Cryptography;
+using System.Net.NetworkInformation;
 
 namespace JLUDrcomService
 {
@@ -16,6 +18,7 @@ namespace JLUDrcomService
 
         private String username;
         private String password;
+        private byte[] salt = new byte[4];
         private byte[] tail = new byte[2];
 
         enum Code
@@ -56,11 +59,27 @@ namespace JLUDrcomService
                 0x00, 0x00
             };
             byte[] receive = NetworkUtils.SendUDPDatagram(packet);
-            return receive[0] == 0x02;
+
+            if (receive[0] == 0x02)
+            {
+                Array.Copy(receive, 4, this.salt, 0, 4);
+                return true;
+            }
+            return false;
         }
 
         public bool LoginAuth()
         {
+            byte[] packet = new byte[]
+            {
+                (byte)Code.LoginAuth, 0x01,
+                0x00, (byte)(username.Length + 20)
+            };
+            packet = NetworkUtils.concat(packet, NetworkUtils.MD5A((byte)Code.LoginAuth, 0x01, salt, password));
+            packet = NetworkUtils.concat(packet, NetworkUtils.GetUsernameB(username));
+            packet = NetworkUtils.concat(packet, new byte[] {
+                0x20, 0x04
+            });
             return true;
         }
 
@@ -79,6 +98,32 @@ namespace JLUDrcomService
             public static byte RandomByte()
             {
                 return (byte)new Random().Next();
+            }
+
+            public static byte[] concat(byte[] a, byte[] b)
+            {
+                byte[] result = new byte[a.Length + b.Length];
+                Array.Copy(a, 0, result, 0, a.Length);
+                Array.Copy(b, 0, result, a.Length, b.Length);
+                return result;
+            }
+
+            public static byte[] MD5A(byte code, byte type, byte[] salt, String password)
+            {
+                MD5 md5 = MD5.Create();
+                byte[] content = new byte[]{
+                    code, type
+                };
+                content = concat(content, salt);
+                content = concat(content, Encoding.ASCII.GetBytes(password));
+                return md5.ComputeHash(content);
+            }
+
+            public static byte[] GetUsernameB(String username)
+            {
+                byte[] result = new byte[36], un = Encoding.ASCII.GetBytes(username);
+                Array.Copy(un, result, un.Length);
+                return result;
             }
 
             public static byte[] SendUDPDatagram(byte[] packet)
@@ -103,6 +148,16 @@ namespace JLUDrcomService
             public static String GetHostName()
             {
                 return Dns.GetHostName();
+            }
+
+            public static byte[] GetMacAddress()
+            {
+                foreach (var t in NetworkInterface.GetAllNetworkInterfaces())
+                {
+                    if (t.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
+                        return t.GetPhysicalAddress().GetAddressBytes();
+                }
+                return new byte[6];
             }
         }
 
