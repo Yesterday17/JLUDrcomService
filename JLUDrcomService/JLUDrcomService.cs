@@ -29,9 +29,6 @@ namespace JLUDrcomService
 
         protected override void OnStart(string[] args)
         {
-            // 调试用 手动创造断点
-            System.Diagnostics.Debugger.Launch();
-
             // 发送 StartRequest 包
             int retry = 0;
             while (!client.StartRequest(retry))
@@ -53,22 +50,18 @@ namespace JLUDrcomService
         {
             // 停止 heartbeat 发包
             HeartBeat.Enabled = false;
+            // 发送 Logout 包
+            client.LogoutAuth();
         }
 
         protected override void OnPause()
         {
-            // 暂停 heartbeat 发包
-            HeartBeat.Enabled = false;
+            this.Stop();
         }
-
-        protected override void OnContinue()
-        {
-            // 继续 heartbeat 发包
-            HeartBeat.Enabled = false;
-        }
-
+        
         private void HeartBeat_Tick(object sender, EventArgs e)
         {
+            // 发送心跳包
             client.HeartBeat();
         }
 
