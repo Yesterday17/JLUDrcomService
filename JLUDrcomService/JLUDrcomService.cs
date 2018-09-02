@@ -13,7 +13,7 @@ namespace JLUDrcomService
 {
     public partial class JLUDrcomService : ServiceBase
     {
-        private RegistryKey jlu;
+        private RegistryKey jlu = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\JLUDrcomService");
 
         private String username;
         private String password;
@@ -21,11 +21,10 @@ namespace JLUDrcomService
         {
             // 初始化
             InitializeComponent();
-            jlu = Registry.CurrentUser.CreateSubKey("Software\\JLUDrcomService");
 
             // 设置用户名密码
-            username = jlu.GetValue("username", "").ToString();
-            password = jlu.GetValue("password", "").ToString();
+            username = ReadRegistry("username");
+            password = ReadRegistry("password");
         }
 
         protected override void OnStart(string[] args)
@@ -61,6 +60,16 @@ namespace JLUDrcomService
         private void HeartBeat_Tick(object sender, EventArgs e)
         {
 
+        }
+
+        private String ReadRegistry(String key)
+        {
+            if (jlu.GetValue(key) == null)
+            {
+                jlu.SetValue(key, "");
+                return "";
+            }
+            return jlu.GetValue(key).ToString();
         }
     }
 }
