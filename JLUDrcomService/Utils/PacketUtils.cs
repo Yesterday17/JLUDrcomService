@@ -86,5 +86,28 @@ namespace JLUDrcomService.Utils
             }
             return BitConverter.GetBytes((1968 * sum) & 0xFFFFFFFF).Take(4).ToArray();
         }
+
+        public static Packet CRC(byte[] packet)
+        {
+            byte[] sum = new byte[2];
+            int len = packet.Length;
+            for (int i = 0; i + 1 < len; i = i + 2)
+            {
+                sum[0] ^= packet[i + 1];
+                sum[1] ^= packet[i];
+            }
+            //现在数据都是偶数位
+            int b = sum;
+            b *= 711;
+            byte[] bytes = b.toByteArray();
+            len = bytes.Length;
+            //System.out.println(toHexString(bytes));
+            byte[] ret = new byte[4];
+            for (int i = 0; i < 4 && len > 0; i++)
+            {
+                ret[i] = bytes[--len];
+            }
+            return ret;
+        }
     }
 }

@@ -73,8 +73,10 @@
       <DependentUpon>JLUDrcomService.cs</DependentUpon>
     </Compile>
     <Compile Include="Packets\Code.cs" />
+    <Compile Include="Packets\HeartBeatPacket.cs" />
     <Compile Include="Packets\LoginAuthPacket.cs" />
     <Compile Include="Packets\Packet.cs" />
+    <Compile Include="Packets\StartRequestPacket.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>

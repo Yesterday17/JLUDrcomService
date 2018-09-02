@@ -9,21 +9,8 @@ namespace JLUDrcomService.Packets
 {
     class LoginAuthPacket
     {
-        private String username;
-        private String password;
-        private byte[] challenge;
-
-        public LoginAuthPacket(String username, String password, byte[] challenge)
+        public static byte[] SendPacket(String username, String password, byte[] MD5A, byte[] MD5B)
         {
-            this.username = username;
-            this.password = password;
-            this.challenge = challenge;
-        }
-
-        public byte[] SendPacket()
-        {
-            byte[] md5a = PacketUtils.MD5A((byte)Code.LoginAuth, 0x01, challenge, password);
-
             // 构建数据包
             Packet packet = new byte[]
             {
@@ -31,7 +18,7 @@ namespace JLUDrcomService.Packets
                     0x00, (byte)(username.Length + 20)
             };
             // MD5A
-            packet += md5a;
+            packet += MD5A;
             // 用户名
             packet += NetworkUtils.GetUsernameB(username);
             // ControlCheckStatus, AdapterNum
@@ -39,9 +26,9 @@ namespace JLUDrcomService.Packets
                     0x20, 0x04
                 };
             // Mac xor MD5A
-            packet += PacketUtils.MACXorMD5A(Constants.MAC, md5a);
+            packet += PacketUtils.MACXorMD5A(Constants.MAC, MD5A);
             // MD5B
-            packet += PacketUtils.MD5B(challenge, password);
+            packet += MD5B;
             // NICCount
             packet += (byte)0x01;
             // 本机IP地址
@@ -121,7 +108,7 @@ namespace JLUDrcomService.Packets
                 (byte) (password.Length > 16 ? 16 : password.Length)
             };
             // ROR
-            packet += PacketUtils.ROR(md5a, password);
+            packet += PacketUtils.ROR(MD5A, password);
             // AuthExtDataOption
             packet += new byte[] {
                 0x02, 0x0c
