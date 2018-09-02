@@ -96,12 +96,10 @@ namespace JLUDrcomService.Utils
                 sum[0] ^= packet[i + 1];
                 sum[1] ^= packet[i];
             }
-            //现在数据都是偶数位
-            int b = sum;
+            long b = BitConverter.ToInt64(sum,0);
             b *= 711;
-            byte[] bytes = b.toByteArray();
+            byte[] bytes = BitConverter.GetBytes(b);
             len = bytes.Length;
-            //System.out.println(toHexString(bytes));
             byte[] ret = new byte[4];
             for (int i = 0; i < 4 && len > 0; i++)
             {

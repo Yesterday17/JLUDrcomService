@@ -41,7 +41,12 @@ namespace JLUDrcomService.Packets
             };
             if(type == 0x03)
             {
-                //
+                packet += PacketUtils.CRC(packet + Constants.IP);
+                packet += Constants.IP;
+                packet += new byte[] {
+                    0x00, 0x00, 0x00, 0x00,
+                    0x00, 0x00, 0x00, 0x00
+                };
             }
             else
             {
