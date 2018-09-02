@@ -18,7 +18,7 @@ namespace JLUDrcomService
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {
-                new NetworkService()
+                new JLUDrcomService()
             };
             ServiceBase.Run(ServicesToRun);
         }

@@ -15,11 +15,11 @@ namespace JLUDrcomService
 
         private const int initPacketSize = 20;
 
-        public static String login(String username, String password)
+        public static String Login(String username, String password)
         {
             UdpClient client = new UdpClient(authServer, authPort);
-            IPEndPoint endPoint = new IPEndPoint(NetworkUtils.ip2Int(authServer), authPort);
-            client.Send(NetworkUtils.generateInitPacket(1), initPacketSize);
+            IPEndPoint endPoint = new IPEndPoint(NetworkUtils.IP2Int(authServer), authPort);
+            client.Send(NetworkUtils.GenerateInitPacket(1), initPacketSize);
 
             byte[] packet1 = client.Receive(ref endPoint);
             return "";
@@ -27,7 +27,7 @@ namespace JLUDrcomService
 
         static class NetworkUtils
         {
-            public static long ip2Int(string ip)
+            public static long IP2Int(string ip)
             {
                 char[] separator = new char[] { '.' };
                 string[] items = ip.Split(separator);
@@ -37,23 +37,23 @@ namespace JLUDrcomService
                         | long.Parse(items[3]);
             }
 
-            public static byte[] randomBytes(int size)
+            public static byte[] RandomBytes(int size)
             {
                 byte[] b = new byte[size];
                 new Random().NextBytes(b);
                 return b;
             }
 
-            public static byte randomByte()
+            public static byte RandomByte()
             {
-                return randomBytes(1)[0];
+                return RandomBytes(1)[0];
             }
 
-            public static byte[] generateInitPacket(int trytime)
+            public static byte[] GenerateInitPacket(int trytime)
             {
                 byte[] packet = new byte[]
                 {
-                    0x01, (byte)(0x02 + trytime), randomByte(), randomByte(), 0x6a,
+                    0x01, (byte)(0x02 + trytime), RandomByte(), RandomByte(), 0x6a,
                     0x00, 0x00, 0x00, 0x00, 0x00,
                     0x00, 0x00, 0x00, 0x00, 0x00,
                     0x00, 0x00, 0x00, 0x00, 0x00

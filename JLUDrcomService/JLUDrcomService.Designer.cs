@@ -1,6 +1,6 @@
 ﻿namespace JLUDrcomService
 {
-    partial class NetworkService
+    partial class JLUDrcomService
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.heartBeat = new System.Windows.Forms.Timer(this.components);
+            this.HeartBeat = new System.Windows.Forms.Timer(this.components);
             // 
-            // heartBeat
+            // HeartBeat
             // 
-            this.heartBeat.Interval = 10000;
+            this.HeartBeat.Interval = 10000;
+            this.HeartBeat.Tick += new System.EventHandler(this.HeartBeat_Tick);
             // 
-            // NetworkService
+            // JLUDrcomService
             // 
             this.ServiceName = "Service1";
 
@@ -43,6 +44,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Timer heartBeat;
+        private System.Windows.Forms.Timer HeartBeat;
     }
 }
