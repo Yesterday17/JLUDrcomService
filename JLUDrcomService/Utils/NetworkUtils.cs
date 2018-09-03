@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
@@ -55,6 +56,15 @@ namespace JLUDrcomService.Utils
 
         public static byte[] GetMacAddressB()
         {
+            RegistryKey jlu = Registry.CurrentConfig.CreateSubKey(@"SOFTWARE\JLUDrcomService");
+            var mac = jlu.GetValue("MAC");
+            jlu.Close();
+
+            if (mac != null)
+            {
+                return (byte[])mac;
+            }
+
             foreach (var t in NetworkInterface.GetAllNetworkInterfaces())
             {
                 if (t.NetworkInterfaceType == NetworkInterfaceType.Ethernet)

@@ -10,5 +10,7 @@ namespace JLUDrcomService
 
         public static byte[] MAC = NetworkUtils.GetMacAddressB();
         public static byte[] IP = NetworkUtils.GetIPB();
+
+        public static Logger logger = new Logger();
     }
 }

@@ -27,6 +27,7 @@ namespace JLUDrcomService
 
         public JLUDrcomClient(String username, String password)
         {
+            Constants.logger.log("Creating new JLUDrcomClient.");
             this.username = username;
             this.password = password;
         }
@@ -46,28 +47,33 @@ namespace JLUDrcomService
                 0x00, 0x00,
                 0x00, 0x00
             };
+            Constants.logger.log("Preparing for StartRequest Packet:\n" + BitConverter.ToString(packet));
             byte[] receive = NetworkUtils.SendUDPDatagram(packet);
 
             if (receive[0] == (byte)Code.StartResponse)
             {
+                Constants.logger.log("Received success StartRequest response:\n" + BitConverter.ToString(receive));
                 Array.Copy(receive, 4, this.challenge, 0, 4);
                 this.MD5A = PacketUtils.MD5A((byte)Code.LoginAuth, 0x01, challenge, password);
                 this.MD5B = PacketUtils.MD5B(challenge, password);
                 return true;
             }
+            Constants.logger.error("Received failure StartRequest response:\n" + BitConverter.ToString(receive));
             return false;
         }
 
         public bool LoginAuth()
         {
-            byte[] result = LoginAuthPacket.SendPacket(username, password, MD5A, MD5B);
+            byte[] receive = LoginAuthPacket.SendPacket(username, password, MD5A, MD5B);
 
-            if (result[0] == (byte)Code.Success)
+            if (receive[0] == (byte)Code.Success)
             {
-                Array.Copy(result, 23, AuthInformation, 0, 16);
+                Constants.logger.log("Received success LoginAuth response:\n" + BitConverter.ToString(receive));
+                Array.Copy(receive, 23, AuthInformation, 0, 16);
                 return true;
             }
 
+            Constants.logger.error("Received failure LoginAuth response:\n" + BitConverter.ToString(receive));
             return false;
         }
 

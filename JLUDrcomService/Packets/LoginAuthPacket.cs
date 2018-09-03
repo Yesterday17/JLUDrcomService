@@ -124,6 +124,8 @@ namespace JLUDrcomService.Packets
             packet += new byte[] {
                 PacketUtils.RandomByte(), PacketUtils.RandomByte()
             };
+            // Log
+            Constants.logger.log("Preparing for LoginAuth Packet:\n" + BitConverter.ToString(packet));
             return NetworkUtils.SendUDPDatagram(packet);
         }
     }

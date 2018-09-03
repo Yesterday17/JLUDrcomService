@@ -89,6 +89,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Utils\Logger.cs" />
     <Compile Include="Utils\NetworkUtils.cs" />
     <Compile Include="Utils\PacketUtils.cs" />
   </ItemGroup>
