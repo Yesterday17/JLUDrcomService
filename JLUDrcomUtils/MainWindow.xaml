@@ -1,0 +1,35 @@
+﻿<Window x:Class="JLUDrcomUtils.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JLUDrcomUtils"
+        mc:Ignorable="d"
+        Title="JLUDrcomService配置工具" Height="181.6" Width="600" ResizeMode="NoResize">
+    <Grid>
+        <TabControl x:Name="tabControl" Margin="0,0,-0.4,0.2">
+            <TabItem Header="服务启动">
+                <Grid Background="#FFE5E5E5">
+                    <Button x:Name="btn_Start" Content="启动服务" Margin="20,20,0,0" Height="34" VerticalAlignment="Top" HorizontalAlignment="Left" Width="102"/>
+                    <Button x:Name="btn_Stop" Content="停止服务" Margin="148,20,0,0" Height="34" VerticalAlignment="Top" HorizontalAlignment="Left" Width="284"/>
+                    <Button x:Name="btn_Start_Copy" Content="重启服务" Margin="457,20,0,0" Height="34" VerticalAlignment="Top" HorizontalAlignment="Left" Width="102"/>
+                    <Button x:Name="btn_uninstall" Content="卸载服务" HorizontalAlignment="Left" Height="34" Margin="20,69,0,0" VerticalAlignment="Top" Width="539"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="服务配置">
+                <Grid Background="#FFE5E5E5">
+                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="72" Margin="10,26,0,0" VerticalAlignment="Top" Width="568" Grid.ColumnSpan="2">
+                        <Label x:Name="lbl_MAC" Content="MAC地址：" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="72" Margin="252.2,9.2,0,0"/>
+                    </Border>
+                    <Label x:Name="lbl_username" Content="用户名：" HorizontalAlignment="Left" Height="28" Margin="10,34,0,0" VerticalAlignment="Top" Width="54"/>
+                    <Label x:Name="lbl_password" Content="　密码：" HorizontalAlignment="Left" Height="28" Margin="10,62,0,0" VerticalAlignment="Top" Width="54"/>
+                    <PasswordBox x:Name="txt_password" HorizontalAlignment="Left" Height="19" Margin="69,62,0,0" VerticalAlignment="Top" Width="185" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="txt_username" HorizontalAlignment="Left" Height="19" Margin="69,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="185" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="txt_username_Copy" HorizontalAlignment="Left" Height="19" Margin="334,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+                    <Button x:Name="btn_save" Content="保存修改" HorizontalAlignment="Left" Height="25" Margin="265,62,0,0" VerticalAlignment="Top" Width="295"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
