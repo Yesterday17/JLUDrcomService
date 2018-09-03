@@ -9,7 +9,7 @@ namespace JLUDrcomService.Packets
 {
     class LoginAuthPacket
     {
-        public static byte[] SendPacket(String username, String password, byte[] MD5A, byte[] MD5B)
+        public static byte[] SendPacket(String username, String password, byte[] MD5A, byte[] MD5B, byte[] IP)
         {
             // 构建数据包
             Packet packet = new byte[]
@@ -32,7 +32,7 @@ namespace JLUDrcomService.Packets
             // NICCount
             packet += (byte)0x01;
             // 本机IP地址
-            packet += Constants.IP;
+            packet += IP;
             // 其他填空IP地址
             packet += new byte[] {
                 0x00, 0x00, 0x00, 0x00,

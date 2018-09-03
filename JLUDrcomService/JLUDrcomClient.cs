@@ -21,6 +21,7 @@ namespace JLUDrcomService
         private byte[] MD5A;
         private byte[] MD5B;
         private byte[] AuthInformation = new byte[16];
+        private byte[] IP = new byte[4];
 
         private int heartbeatCount = 0;
         private byte[] tail = new byte[4];
@@ -28,7 +29,7 @@ namespace JLUDrcomService
         public JLUDrcomClient(String username, String password)
         {
             Constants.logger.log("Creating new JLUDrcomClient.");
-            Constants.logger.log("\r\n MAC: " + BitConverter.ToString(Constants.MAC) + "\r\n IP: " + BitConverter.ToString(Constants.IP) + "\r\n LogPath: " + Constants.logPath);
+            Constants.logger.log("\r\n MAC: " + BitConverter.ToString(Constants.MAC) + "\r\n LogPath: " + Constants.logPath);
             this.username = username;
             this.password = password;
         }
@@ -54,9 +55,11 @@ namespace JLUDrcomService
             if (receive[0] == (byte)Code.StartResponse)
             {
                 Constants.logger.log("Received success StartRequest response:\n" + BitConverter.ToString(receive));
-                Array.Copy(receive, 4, this.challenge, 0, 4);
-                this.MD5A = PacketUtils.MD5A((byte)Code.LoginAuth, 0x01, challenge, password);
-                this.MD5B = PacketUtils.MD5B(challenge, password);
+                Array.Copy(receive, 4, challenge, 0, 4);
+                MD5A = PacketUtils.MD5A((byte)Code.LoginAuth, 0x01, challenge, password);
+                MD5B = PacketUtils.MD5B(challenge, password);
+                Array.Copy(receive, 20, IP, 0, 4);
+                Constants.logger.log("Successfully get IP:\n" + BitConverter.ToString(IP));
                 return true;
             }
             Constants.logger.error("Received failure StartRequest response:\n" + BitConverter.ToString(receive));
@@ -65,7 +68,7 @@ namespace JLUDrcomService
 
         public bool LoginAuth()
         {
-            byte[] receive = LoginAuthPacket.SendPacket(username, password, MD5A, MD5B);
+            byte[] receive = LoginAuthPacket.SendPacket(username, password, MD5A, MD5B, IP);
 
             if (receive[0] == (byte)Code.Success)
             {
@@ -95,13 +98,13 @@ namespace JLUDrcomService
 
             if (heartbeatCount % 10 == 0)
             {
-                HeartBeatPacket.SendKeepPacket(1, true, heartbeatCount, tail);
+                HeartBeatPacket.SendKeepPacket(1, true, heartbeatCount, tail, IP);
             }
 
             // 更新 tail
-            Packet res1 = HeartBeatPacket.SendKeepPacket(1, false, heartbeatCount, tail);
+            Packet res1 = HeartBeatPacket.SendKeepPacket(1, false, heartbeatCount, tail, IP);
             Array.Copy(res1, 16, tail, 0, 4);
-            Packet res2 = HeartBeatPacket.SendKeepPacket(3, false, heartbeatCount, tail);
+            Packet res2 = HeartBeatPacket.SendKeepPacket(3, false, heartbeatCount, tail, IP);
 
             // 计数菌 +1
             heartbeatCount++;

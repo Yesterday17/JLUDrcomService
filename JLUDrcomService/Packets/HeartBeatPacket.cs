@@ -25,7 +25,7 @@ namespace JLUDrcomService.Packets
             return NetworkUtils.SendUDPDatagram(packet);
         }
 
-        public static byte[] SendKeepPacket(byte type, bool fake, int count, byte[] tail)
+        public static byte[] SendKeepPacket(byte type, bool fake, int count, byte[] tail, byte[] IP)
         {
             Packet packet = new Packet(new byte[] {
                 0x07, (byte)count,
@@ -41,8 +41,8 @@ namespace JLUDrcomService.Packets
             };
             if(type == 0x03)
             {
-                packet += PacketUtils.CRC(packet + Constants.IP);
-                packet += Constants.IP;
+                packet += PacketUtils.CRC(packet + IP);
+                packet += IP;
                 packet += new byte[] {
                     0x00, 0x00, 0x00, 0x00,
                     0x00, 0x00, 0x00, 0x00
