@@ -47,11 +47,20 @@ namespace JLUDrcomService.Utils
 
         public static byte[] GetIPB()
         {
+            RegistryKey jlu = Registry.CurrentConfig.CreateSubKey(@"SOFTWARE\JLUDrcomService");
+            var ip = jlu.GetValue("IP");
+            jlu.Close();
+
+            if (ip != null)
+            {
+                return (byte[])ip;
+            }
+
             foreach (var t in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
             {
                 if (t.AddressFamily == AddressFamily.InterNetwork) return t.GetAddressBytes();
             }
-            return new byte[] { };
+            return new byte[4];
         }
 
         public static byte[] GetMacAddressB()
