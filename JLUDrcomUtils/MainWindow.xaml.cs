@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,9 +21,48 @@ namespace JLUDrcomUtils
     /// </summary>
     public partial class MainWindow : Window
     {
+        ServiceController service = new ServiceController("JLUDrcomService");
+
+        public void StartService()
+        {
+            service.Start();
+        }
+
+        public void StopService()
+        {
+            service.Stop();
+        }
+
+        public void RestartService()
+        {
+            StartService();
+            StopService();
+        }
+
+        public void UninstallService()
+        {
+            StopService();
+            // TODO: Uninstall here.
+        }
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void btn_Start_Click(object sender, RoutedEventArgs e)
+        {
+            StartService();
+        }
+
+        private void btn_Stop_Click(object sender, RoutedEventArgs e)
+        {
+            StopService();
+        }
+
+        private void btn_uninstall_Click(object sender, RoutedEventArgs e)
+        {
+            UninstallService();
         }
     }
 }

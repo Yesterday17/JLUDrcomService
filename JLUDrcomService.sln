@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JLUDrcomService", "JLUDrcomService\JLUDrcomService.csproj", "{843AD048-190D-4B08-A1C8-9F270EB90E44}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "JLUDrcomServiceInstaller", "JLUDrcomServiceInstaller\JLUDrcomServiceInstaller.vdproj", "{04C83BD4-4823-4C50-A016-FF47560215A5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{69138688-BB43-4A85-8BA0-C6B27BFE790B} = {69138688-BB43-4A85-8BA0-C6B27BFE790B}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JLUDrcomUtils", "JLUDrcomUtils\JLUDrcomUtils.csproj", "{69138688-BB43-4A85-8BA0-C6B27BFE790B}"
 EndProject
