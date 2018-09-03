@@ -280,7 +280,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:JLUDrcomService"
         "ProductCode" = "8:{31E98AC8-D4C6-4329-9E34-1830C608CB8A}"
-        "PackageCode" = "8:{E948284A-A30B-4CCF-AAF7-8CB9DD1C8182}"
+        "PackageCode" = "8:{6FB75D1D-8415-4839-A515-04D3B6DF9225}"
         "UpgradeCode" = "8:{93F09D66-159F-4C73-8CB5-1514B4D37BE9}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -801,7 +801,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_1C1B356A81DE45A2BF0C78B7B5F9919C"
             {
-            "SourcePath" = "8:..\\JLUDrcomService\\obj\\Debug\\JLUDrcomService.exe"
+            "SourcePath" = "8:..\\JLUDrcomService\\obj\\Release\\JLUDrcomService.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_3EB878226B704D0AB0909C9D38E602AB"
@@ -829,7 +829,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_49A6BA713FBE47BDBFE02B801EFF81C7"
             {
-            "SourcePath" = "8:..\\JLUDrcomUtils\\obj\\Debug\\JLUDrcomUtils.exe"
+            "SourcePath" = "8:..\\JLUDrcomUtils\\obj\\Release\\JLUDrcomUtils.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_3EB878226B704D0AB0909C9D38E602AB"

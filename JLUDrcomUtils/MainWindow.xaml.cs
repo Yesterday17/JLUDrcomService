@@ -25,24 +25,60 @@ namespace JLUDrcomUtils
 
         public void StartService()
         {
-            service.Start();
+            try
+            {
+                service.Start();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "JLUDrcomUtils");
+                return;
+            }
+            MessageBox.Show("服务启动成功！", "JLUDrcomUtils");
         }
 
         public void StopService()
         {
-            service.Stop();
+            try
+            {
+                service.Stop();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "JLUDrcomUtils");
+                return;
+            }
+            MessageBox.Show("服务停止成功！", "JLUDrcomUtils");
         }
 
         public void RestartService()
         {
-            StartService();
-            StopService();
+            try
+            {
+                StartService();
+                StopService();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "JLUDrcomUtils");
+                return;
+            }
+            MessageBox.Show("服务重启成功！", "JLUDrcomUtils");
         }
 
         public void UninstallService()
         {
-            StopService();
+            try
+            {
+                StopService();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "JLUDrcomUtils");
+                return;
+            }
             // TODO: Uninstall here.
+            MessageBox.Show("服务卸载成功！", "JLUDrcomUtils");
         }
 
         public MainWindow()
