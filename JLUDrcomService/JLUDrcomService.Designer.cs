@@ -28,22 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.HeartBeat = new System.Windows.Forms.Timer(this.components);
-            // 
-            // HeartBeat
-            // 
-            this.HeartBeat.Interval = 20000;
-            this.HeartBeat.Tick += new System.EventHandler(this.HeartBeat_Tick);
             // 
             // JLUDrcomService
             // 
-            this.ServiceName = "Service1";
+            this.ServiceName = "JLUDrcomService";
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Timer HeartBeat;
     }
 }

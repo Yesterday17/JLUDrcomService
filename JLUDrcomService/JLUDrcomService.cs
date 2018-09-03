@@ -15,20 +15,33 @@ namespace JLUDrcomService
     {
         private RegistryKey jlu;
         private JLUDrcomClient client;
+        System.Timers.Timer HeartBeat = new System.Timers.Timer(20000);
 
         public JLUDrcomService()
         {
             // 初始化
             InitializeComponent();
-            Registry.CurrentUser.CreateSubKey(@"SOFTWARE\JLUDrcomService");
-            jlu = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\JLUDrcomService");
+            jlu = Registry.CurrentConfig.CreateSubKey(@"SOFTWARE\JLUDrcomService", true);
 
             // 配置 client
             client = new JLUDrcomClient(ReadRegistry("username"), ReadRegistry("password"));
+            jlu.Flush();
+
+            // 配置 Timer
+            HeartBeat.Elapsed += Timer_Elapsed;
+        }
+
+        private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            // 发送心跳包
+            client.HeartBeat();
         }
 
         protected override void OnStart(string[] args)
         {
+            // Debug
+            // System.Diagnostics.Debugger.Launch();
+
             // 发送 StartRequest 包
             int retry = 0;
             while (!client.StartRequest(retry))
@@ -43,28 +56,20 @@ namespace JLUDrcomService
             }
 
             // 启动 heartbeat 发包
-            HeartBeat.Enabled = true;
+            HeartBeat.Start();
+
+            // 手动执行一次心跳包
+            client.HeartBeat();
         }
 
         protected override void OnStop()
         {
             // 停止 heartbeat 发包
-            HeartBeat.Enabled = false;
+            HeartBeat.Stop();
             // 发送 Logout 包
             client.LogoutAuth();
         }
-
-        protected override void OnPause()
-        {
-            this.Stop();
-        }
-
-        private void HeartBeat_Tick(object sender, EventArgs e)
-        {
-            // 发送心跳包
-            client.HeartBeat();
-        }
-
+        
         private String ReadRegistry(String key)
         {
             if (jlu.GetValue(key) == null)

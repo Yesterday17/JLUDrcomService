@@ -31,7 +31,7 @@ namespace JLUDrcomService.Packets
                 0x07, (byte)count,
                 0x28, 0x00,
                 0x0b, type,
-                (byte)(fake ? 0xdc : 0x0f), (byte)(fake ? 0x02 : 0x27),
+                (byte)(fake ? 0x0f : 0xdc), (byte)(fake ? 0x27 : 0x02),
                 PacketUtils.RandomByte(), PacketUtils.RandomByte(),
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
             });

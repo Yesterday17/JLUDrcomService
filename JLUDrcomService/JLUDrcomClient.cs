@@ -87,9 +87,9 @@ namespace JLUDrcomService
             }
 
             // 更新 tail
-            Packet res1 = HeartBeatPacket.SendKeepPacket(1, true, heartbeatCount, tail);
+            Packet res1 = HeartBeatPacket.SendKeepPacket(1, false, heartbeatCount, tail);
             Array.Copy(res1, 16, tail, 0, 4);
-            Packet res2 = HeartBeatPacket.SendKeepPacket(3, true, heartbeatCount, tail);
+            Packet res2 = HeartBeatPacket.SendKeepPacket(3, false, heartbeatCount, tail);
 
             // 计数菌 +1
             heartbeatCount++;

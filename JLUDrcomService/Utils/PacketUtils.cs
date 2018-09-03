@@ -96,7 +96,7 @@ namespace JLUDrcomService.Utils
                 sum[0] ^= packet[i + 1];
                 sum[1] ^= packet[i];
             }
-            long b = BitConverter.ToInt64(sum,0);
+            long b = BitConverter.ToInt16(sum,0);
             b *= 711;
             byte[] bytes = BitConverter.GetBytes(b);
             len = bytes.Length;
