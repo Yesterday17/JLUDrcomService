@@ -28,6 +28,7 @@ namespace JLUDrcomService
         public JLUDrcomClient(String username, String password)
         {
             Constants.logger.log("Creating new JLUDrcomClient.");
+            Constants.logger.log("\r\n MAC: " + BitConverter.ToString(Constants.MAC) + "\r\n IP: " + BitConverter.ToString(Constants.IP) + "\r\n LogPath: " + Constants.logPath);
             this.username = username;
             this.password = password;
         }
