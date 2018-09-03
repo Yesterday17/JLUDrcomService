@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("JLUDrcomService")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Yesterday17")]
 [assembly: AssemblyProduct("JLUDrcomService")]
 [assembly: AssemblyCopyright("Copyright © Yesterday17 2018")]
 [assembly: AssemblyTrademark("")]
