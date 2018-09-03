@@ -34,13 +34,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5960C884FA0967596E9A023B1938990D"
+        "OwnerKey" = "8:_1C1B356A81DE45A2BF0C78B7B5F9919C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1C1B356A81DE45A2BF0C78B7B5F9919C"
+        "OwnerKey" = "8:_5960C884FA0967596E9A023B1938990D"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -61,6 +61,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -77,6 +85,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -228,7 +252,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:JLUDrcomService"
         "ProductCode" = "8:{141495C5-C63D-4790-9DDB-4BC1D80B361D}"
-        "PackageCode" = "8:{1C89B310-E010-4904-ABE4-3BE491A20E15}"
+        "PackageCode" = "8:{9617DE3F-8117-4E62-9A50-D9D2B6473C44}"
         "UpgradeCode" = "8:{93F09D66-159F-4C73-8CB5-1514B4D37BE9}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -749,7 +773,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_1C1B356A81DE45A2BF0C78B7B5F9919C"
             {
-            "SourcePath" = "8:..\\JLUDrcomService\\obj\\Release\\JLUDrcomService.exe"
+            "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_3EB878226B704D0AB0909C9D38E602AB"

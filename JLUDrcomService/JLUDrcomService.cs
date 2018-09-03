@@ -40,7 +40,7 @@ namespace JLUDrcomService
         protected override void OnStart(string[] args)
         {
             // Debug
-            System.Diagnostics.Debugger.Launch();
+            // System.Diagnostics.Debugger.Launch();
 
             // 检验用户名密码是否存在
             if (!client.IsValid())

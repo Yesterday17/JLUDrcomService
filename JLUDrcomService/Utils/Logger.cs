@@ -9,12 +9,7 @@ namespace JLUDrcomService.Utils
 {
     class Logger
     {
-        private StreamWriter w;
-
-        public Logger()
-        {
-            w = File.AppendText(Environment.CurrentDirectory + "\\Log.log");
-        }
+        private StreamWriter w = File.AppendText(System.AppDomain.CurrentDomain.BaseDirectory + "\\Log.log");
 
         public void log(string logMessage)
         {
