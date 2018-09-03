@@ -76,6 +76,11 @@ namespace JLUDrcomService
             return true;
         }
 
+        public bool IsValid()
+        {
+            return username != "" && password != "";
+        }
+
         public bool HeartBeat()
         {
             // TODO: 增加错误判定

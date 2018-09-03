@@ -42,6 +42,12 @@ namespace JLUDrcomService
             // Debug
             // System.Diagnostics.Debugger.Launch();
 
+            // 检验用户名密码是否存在
+            if (!client.IsValid())
+            {
+                this.Stop();
+            }
+
             // 发送 StartRequest 包
             int retry = 0;
             while (!client.StartRequest(retry))
