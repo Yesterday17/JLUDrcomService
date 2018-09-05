@@ -12,7 +12,7 @@
                 <Grid Background="#FFE5E5E5">
                     <Button x:Name="btn_Start" Content="启动服务" Margin="20,20,0,0" Height="34" VerticalAlignment="Top" HorizontalAlignment="Left" Width="102" Click="btn_Start_Click"/>
                     <Button x:Name="btn_Stop" Content="停止服务" Margin="148,20,0,0" Height="34" VerticalAlignment="Top" HorizontalAlignment="Left" Width="284" Click="btn_Stop_Click"/>
-                    <Button x:Name="btn_Start_Copy" Content="重启服务" Margin="457,20,0,0" Height="34" VerticalAlignment="Top" HorizontalAlignment="Left" Width="102"/>
+                    <Button x:Name="btn_Start_Copy" Content="重启服务" Margin="457,20,0,0" Height="34" VerticalAlignment="Top" HorizontalAlignment="Left" Width="102" Click="btn_Start_Copy_Click"/>
                     <Button x:Name="btn_uninstall" Content="卸载服务" HorizontalAlignment="Left" Height="34" Margin="20,69,0,0" VerticalAlignment="Top" Width="539" Click="btn_uninstall_Click"/>
                 </Grid>
             </TabItem>

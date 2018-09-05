@@ -23,18 +23,18 @@ namespace JLUDrcomUtils
             }
             else
             {
-                switch (e.Args[0])
+                switch (e.Args[0].ToUpper())
                 {
-                    case "start":
+                    case "START":
                         mainWindow.StartService();
                         break;
-                    case "uninstall":
+                    case "UNINSTALL":
                         mainWindow.UninstallService();
                         break;
-                    case "stop":
+                    case "STOP":
                         mainWindow.StopService();
                         break;
-                    case "restart":
+                    case "RESTART":
                         mainWindow.RestartService();
                         break;
                 }
