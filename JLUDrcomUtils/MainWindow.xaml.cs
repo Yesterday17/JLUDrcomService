@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Configuration.Install;
 using System.ServiceProcess;
 using System.Windows;
@@ -11,6 +12,7 @@ namespace JLUDrcomUtils
     public partial class MainWindow : Window
     {
         ServiceController service;
+        RegistryKey jlu;
 
         public void StartService(bool msg = true)
         {
@@ -92,9 +94,28 @@ namespace JLUDrcomUtils
             if (msg) MessageBox.Show("服务卸载成功！", "JLUDrcomUtils");
         }
 
+        public void UpdateSetting()
+        {
+            try
+            {
+                jlu.SetValue("username", this.txt_username.Text);
+                jlu.GetValue("password", this.txt_username.Text);
+                jlu.Flush();
+                MessageBox.Show("配置成功！MAC地址暂不支持修改。", "JLUDrcomUtils");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "JLUDrcomUtils");
+            }
+        }
+
         public MainWindow()
         {
             InitializeComponent();
+            jlu = Registry.CurrentConfig.CreateSubKey(@"SOFTWARE\JLUDrcomService", true);
+            this.txt_username.Text = jlu.GetValue("username", "").ToString();
+            this.txt_password.Password = jlu.GetValue("password", "").ToString();
+            this.txt_mac.Text = jlu.GetValue("MAC", "").ToString();
         }
 
         private void btn_Start_Click(object sender, RoutedEventArgs e)
@@ -115,6 +136,11 @@ namespace JLUDrcomUtils
         private void btn_Start_Copy_Click(object sender, RoutedEventArgs e)
         {
             RestartService();
+        }
+
+        private void btn_save_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateSetting();
         }
     }
 }
