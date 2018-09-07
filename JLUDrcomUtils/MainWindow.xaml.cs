@@ -60,8 +60,8 @@ namespace JLUDrcomUtils
 
             try
             {
-                if (service.Status == ServiceControllerStatus.Running) StopService();
-                StartService();
+                if (service.Status == ServiceControllerStatus.Running) StopService(msg);
+                StartService(msg);
             }
             catch (Exception e)
             {
@@ -77,7 +77,7 @@ namespace JLUDrcomUtils
 
             try
             {
-                if (service.Status == ServiceControllerStatus.Running) StopService();
+                if (service.Status == ServiceControllerStatus.Running) StopService(msg);
 
                 ServiceInstaller installer = new ServiceInstaller();
                 installer.Context = new InstallContext("JLUDrcomService_uninstall.log", null);

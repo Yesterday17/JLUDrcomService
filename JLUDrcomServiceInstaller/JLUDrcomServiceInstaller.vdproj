@@ -21,12 +21,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_2974EFA967114A2FB449B8DBFA41695A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_49A6BA713FBE47BDBFE02B801EFF81C7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -41,6 +35,12 @@
         {
         "MsmKey" = "8:_5960C884FA0967596E9A023B1938990D"
         "OwnerKey" = "8:_49A6BA713FBE47BDBFE02B801EFF81C7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B8EACBFC0F0F45C4AC7724FDAE1D4CE9"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -133,18 +133,32 @@
     {
         "CustomAction"
         {
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_865BB2A44D9A410BA345A97F3EF2B6A5"
+            {
+            "Name" = "8:卸载服务"
+            "Condition" = "8:"
+            "Object" = "8:_49A6BA713FBE47BDBFE02B801EFF81C7"
+            "FileType" = "3:2"
+            "InstallAction" = "3:4"
+            "Arguments" = "8:uninstall"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_56BDC0EE_6A08_491A_87F7_171CAA4B41B0"
+            "InstallerClass" = "11:FALSE"
+            "CustomActionData" = "8:"
+            }
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_ABABED2ECE094A73906EC8F26E0C9394"
             {
-            "Name" = "8:配置用户名密码"
+            "Name" = "8:尝试启动服务"
             "Condition" = "8:"
             "Object" = "8:_49A6BA713FBE47BDBFE02B801EFF81C7"
             "FileType" = "3:2"
             "InstallAction" = "3:1"
-            "Arguments" = "8:"
+            "Arguments" = "8:start"
             "EntryPoint" = "8:"
             "Sequence" = "3:2"
             "Identifier" = "8:_98AB051F_2D04_4D35_9A63_86A0B2FB6758"
-            "InstallerClass" = "11:TRUE"
+            "InstallerClass" = "11:FALSE"
             "CustomActionData" = "8:"
             }
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_B3EC929CD1FA44FCB9A9741F8AD85B41"
@@ -158,20 +172,6 @@
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
             "Identifier" = "8:_20B75A0A_C800_437C_929A_C90D90ECD83B"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_BA0CF764965D4424AA3ED3490A86C56D"
-            {
-            "Name" = "8:卸载服务"
-            "Condition" = "8:"
-            "Object" = "8:_49A6BA713FBE47BDBFE02B801EFF81C7"
-            "FileType" = "3:2"
-            "InstallAction" = "3:4"
-            "Arguments" = "8:uninstall"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_56BDC0EE_6A08_491A_87F7_171CAA4B41B0"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
@@ -198,26 +198,6 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2974EFA967114A2FB449B8DBFA41695A"
-            {
-            "SourcePath" = "8:..\\LICENSE"
-            "TargetName" = "8:LICENSE"
-            "Tag" = "8:"
-            "Folder" = "8:_3EB878226B704D0AB0909C9D38E602AB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5960C884FA0967596E9A023B1938990D"
             {
             "AssemblyRegister" = "3:1"
@@ -247,6 +227,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B8EACBFC0F0F45C4AC7724FDAE1D4CE9"
+            {
+            "SourcePath" = "8:LICENSE.rtf"
+            "TargetName" = "8:LICENSE.rtf"
+            "Tag" = "8:"
+            "Folder" = "8:_3EB878226B704D0AB0909C9D38E602AB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -316,15 +316,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:JLUDrcomService"
-        "ProductCode" = "8:{31E98AC8-D4C6-4329-9E34-1830C608CB8A}"
-        "PackageCode" = "8:{6FB75D1D-8415-4839-A515-04D3B6DF9225}"
+        "ProductCode" = "8:{EB7E0B06-128C-4543-AE33-47201C544A90}"
+        "PackageCode" = "8:{EF1A2162-D2E1-4D26-AB2F-382CADB22D91}"
         "UpgradeCode" = "8:{93F09D66-159F-4C73-8CB5-1514B4D37BE9}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.2"
+        "ProductVersion" = "8:1.0.4"
         "Manufacturer" = "8:Yesterday17"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/Yesterday17/JLUDrcomService/issues"
@@ -333,7 +333,7 @@
         "ARPCONTACT" = "8:Yesterday17"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
-        "ARPURLINFOABOUT" = "8:https://github.com/Yesterday17/JLUDrcomService"
+        "ARPURLINFOABOUT" = "8:https://github.com/neptunia-jlu-soft/JLUDrcomService"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
@@ -603,7 +603,7 @@
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
                             "Setting" = "3:2"
-                            "Value" = "8:_2974EFA967114A2FB449B8DBFA41695A"
+                            "Value" = "8:_B8EACBFC0F0F45C4AC7724FDAE1D4CE9"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "Sunken"
@@ -836,7 +836,7 @@
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
                             "Setting" = "3:2"
-                            "Value" = "8:_2974EFA967114A2FB449B8DBFA41695A"
+                            "Value" = "8:_B8EACBFC0F0F45C4AC7724FDAE1D4CE9"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "Sunken"
