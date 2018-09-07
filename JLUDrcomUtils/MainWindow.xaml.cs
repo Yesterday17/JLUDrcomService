@@ -12,13 +12,13 @@ namespace JLUDrcomUtils
     {
         ServiceController service;
 
-        public void StartService()
+        public void StartService(bool msg = true)
         {
             service = new ServiceController("JLUDrcomService");
 
             if (service.Status == ServiceControllerStatus.Running || service.Status == ServiceControllerStatus.StartPending)
             {
-                MessageBox.Show("服务已处于启动状态！", "JLUDrcomUtils");
+                if (msg) MessageBox.Show("服务已处于启动状态！", "JLUDrcomUtils");
                 return;
             }
             try
@@ -27,19 +27,19 @@ namespace JLUDrcomUtils
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "JLUDrcomUtils");
+                if (msg) MessageBox.Show(e.Message, "JLUDrcomUtils");
                 return;
             }
-            MessageBox.Show("服务启动成功！", "JLUDrcomUtils");
+            if (msg) MessageBox.Show("服务启动成功！", "JLUDrcomUtils");
         }
 
-        public void StopService()
+        public void StopService(bool msg = true)
         {
             service = new ServiceController("JLUDrcomService");
 
             if (service.Status == ServiceControllerStatus.Stopped || service.Status == ServiceControllerStatus.StopPending)
             {
-                MessageBox.Show("服务已处于停止状态！", "JLUDrcomUtils");
+                if (msg) MessageBox.Show("服务已处于停止状态！", "JLUDrcomUtils");
                 return;
             }
             try
@@ -48,13 +48,13 @@ namespace JLUDrcomUtils
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "JLUDrcomUtils");
+                if (msg) MessageBox.Show(e.Message, "JLUDrcomUtils");
                 return;
             }
-            MessageBox.Show("服务停止成功！", "JLUDrcomUtils");
+            if (msg) MessageBox.Show("服务停止成功！", "JLUDrcomUtils");
         }
 
-        public void RestartService()
+        public void RestartService(bool msg = true)
         {
             service = new ServiceController("JLUDrcomService");
 
@@ -65,13 +65,13 @@ namespace JLUDrcomUtils
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "JLUDrcomUtils");
+                if (msg) MessageBox.Show(e.Message, "JLUDrcomUtils");
                 return;
             }
-            MessageBox.Show("服务重启成功！", "JLUDrcomUtils");
+            if (msg) MessageBox.Show("服务重启成功！", "JLUDrcomUtils");
         }
 
-        public void UninstallService()
+        public void UninstallService(bool msg = true)
         {
             service = new ServiceController("JLUDrcomService");
 
@@ -86,10 +86,10 @@ namespace JLUDrcomUtils
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "JLUDrcomUtils");
+                if (msg) MessageBox.Show(e.Message, "JLUDrcomUtils");
                 return;
             }
-            MessageBox.Show("服务卸载成功！", "JLUDrcomUtils");
+            if (msg) MessageBox.Show("服务卸载成功！", "JLUDrcomUtils");
         }
 
         public MainWindow()

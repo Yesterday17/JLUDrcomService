@@ -26,16 +26,16 @@ namespace JLUDrcomUtils
                 switch (e.Args[0].ToUpper())
                 {
                     case "START":
-                        mainWindow.StartService();
+                        mainWindow.StartService(false);
                         break;
                     case "UNINSTALL":
-                        mainWindow.UninstallService();
+                        mainWindow.UninstallService(false);
                         break;
                     case "STOP":
-                        mainWindow.StopService();
+                        mainWindow.StopService(false);
                         break;
                     case "RESTART":
-                        mainWindow.RestartService();
+                        mainWindow.RestartService(false);
                         break;
                 }
                 Application.Current.Shutdown();
